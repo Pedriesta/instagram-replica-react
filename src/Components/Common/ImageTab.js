@@ -8,8 +8,8 @@ const ImageTab = (props) => {
     let src = "";
     props.imageGrid ? src=gridOn : src=gridOff
     return (
-        <button className={classes.CONTENT_TAB} id={ids.IMAGE_TAB}>
-            <img src={src} alt="Image Tab" id={ids.IMAGE_GRID_ICON}></img>
+        <button className={classes.CONTENT_TAB} id={ids.IMAGE_TAB} onClick={props.toggleImageGrid}>
+            <img src={src} alt="ImageTab" id={ids.IMAGE_GRID_ICON}></img>
             Images
         </button>
     );

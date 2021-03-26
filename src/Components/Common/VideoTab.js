@@ -5,10 +5,10 @@ import tvOn from 'Assets/icons/tv-24px.svg';
 
 const VideoTab = (props) => {
     let src = "";
-    props.videoGridActive ? src = tvOn : src = tvOff;
+    props.videoGrid? src = tvOn : src = tvOff;
 
     return (
-        <button className={classes.CONTENT_TAB} id={ids.VIDEO_TAB}>
+        <button className={classes.CONTENT_TAB} id={ids.VIDEO_TAB} onClick={props.toggleVideoGrid}>
             <img src={src} alt="Video Tab" id={ids.VIDEO_GRID_ICON}></img>
             Videos
         </button>

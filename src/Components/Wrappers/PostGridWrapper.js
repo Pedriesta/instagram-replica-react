@@ -29,8 +29,8 @@ class ImageGridWrapper extends Component {
             id={image.id} 
             imageUrl={image.imageUrl} 
             caption={image.caption} 
-            numberOfLikes={image.numberOfLikes}
-            numberOfComments={image.numberOfComments}
+            numberOfLikes={image.likes}
+            numberOfComments={image.comments}
             isLiked={image.liked}>
             </ImagePost>
         });
@@ -70,10 +70,9 @@ class VideoGridWrapper extends Component{
             id = {video.id}
             videoUrl = {video.videoUrl}
             caption = {video.caption}
-            numberOfLikes={video.numberOfLikes}
-            numberOfComments={video.numberOfComments}
+            numberOfLikes={video.likes}
+            numberOfComments={video.comments}
             isLiked = {video.liked}></VideoPost>
-            console.log(post);
             return post;
         });
         console.log(videoGrid);

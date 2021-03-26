@@ -9,10 +9,10 @@ class LikeCommentIconWrapper extends Component {
     render() {
         return (
             <div className={classes.LIKES_AND_COMMENTS}>
-                <LikeIcon liked={this.props.isLiked} ></LikeIcon>
+                <LikeIcon liked={this.props.isLiked} toggleLike={this.props.toggleLike}></LikeIcon>
                 <NumberOfLikes numberOfLikes={this.props.numberOfLikes}></NumberOfLikes>
                 <CommentIcon></CommentIcon>
-                <NumberOfComments NumberOfComments={this.props.numberOfComments}></NumberOfComments>
+                <NumberOfComments numberOfComments={this.props.numberOfComments}></NumberOfComments>
             </div>
         );
     }

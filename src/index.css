@@ -285,6 +285,7 @@ input:focus{
 
 .contentTab:active{
     opacity: 0.3;
+    border-top: 0.1rem solid black;
 }
 
 #imageGridIcon{
@@ -310,7 +311,7 @@ input:focus{
 #videoGrid{
     width : 100%;
     margin : 0 auto;
-    display : none;
+    display : grid;
     justify-content: center;
     grid-template-columns: repeat(3, 23vw);
     grid-template-rows: repeat(4, 23vw);
@@ -384,8 +385,12 @@ input:focus{
 
 .likeIcon{
     padding : 0 0.4rem 0 0.4rem;
+    height: 36px;
+    width : 36px;
 }
 
 .commentIcon{
     padding : 0 0.4rem 0 0.4rem;
+    height: 36px;
+    width : 36px;
 }

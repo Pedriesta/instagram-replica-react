@@ -37,6 +37,16 @@ class ProfileContent extends Component {
             console.log(err);
         }
     }
+
+    updateFollowStatus = ()=>{
+        this.setState((prevState) => ({
+            isFollowed : !prevState.isFollowed,
+            userInfo : {
+                ...prevState.userInfo,
+                followers : prevState.isFollowed ? prevState.userInfo.followers-1 : prevState.userInfo.followers+1
+            }
+        }));
+    }
     render() {
         const userInfo = this.state.userInfo;
 
