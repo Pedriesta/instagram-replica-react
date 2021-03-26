@@ -1,0 +1,125 @@
+{
+"name" : "tekioncorp",
+"followers" : 346,
+"following" : 500,
+"numberOfPosts" : 12,
+"posts" : {
+    "images" : [
+        {
+            "id" : 1,
+            "imageUrl" : "./Assets/images/download5.jpeg",
+            "liked" : false,
+            "caption" : "Tekion Corp",
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 2,
+            "imageUrl" : "./Assets/images/download1.jpeg",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 3,
+            "imageUrl" : "./Assets/images/downloa2.jpeg",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 4,
+            "imageUrl" : "./Assets/images/download3.jpeg",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 5,
+            "imageUrl" : "./Assets/images/download4.jpeg",
+            "caption" : "Tekion Corp",
+            "likes" : 45,
+            "liked" : false,
+            "comments" : 50
+        },
+        {
+            "id" : 6,
+            "imageUrl" : "./Assets/images/download5.jpeg",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 7,
+            "imageUrl" : "./Assets/images/download6.jpeg",
+            "caption" : "Tekion Corp",
+            "likes" : 45,
+            "liked" : false,
+            "comments" : 50
+        },
+        {
+            "id" : 8,
+            "imageUrl" : "./Assets/images/download1.jpeg",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 9,
+            "imageUrl" : "./Assets/images/downloa2.jpeg",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 10,
+            "imageUrl" : "./Assets/images/download3.jpeg",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 11,
+            "imageUrl" : "./Assets/images/download4.jpeg",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        }],
+    "videos" : [
+        {
+            "id" : 12,
+            "videoUrl" : "./Assets/videos/sunset.mp4",
+            "liked" : false,
+            "caption" : "Tekion Corp",
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 13,
+            "liked" : false,
+            "videoUrl" : "./Assets/videos/mixkit-very-close-shot-of-the-leaves-of-a-tree-wet-18310.mp4",
+            "caption" : "Tekion Corp",
+            "likes" : 45,
+            "comments" : 50
+        },
+        {
+            "id" : 14,
+            "videoUrl" : "./Assets/videos/mixkit-white-sand-beach-and-palm-trees-1564.mp4",
+            "caption" : "Tekion Corp",
+            "liked" : false,
+            "likes" : 45,
+            "comments" : 50
+        }
+    ]},
+"profilePicture" : "./Assets/images/download.png",
+"bio" : "Tekion",
+"isFollowed" : false
+}
