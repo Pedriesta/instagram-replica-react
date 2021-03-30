@@ -16,6 +16,7 @@ const ids = {
     VIDEO_TAB : "videoTab",
     IMAGE_TAB : "imageTab",
     AVATAR : "avatar",
+    AVATAR_LARGE : "avatarLarge",
     HEADER : "navbar",
     CARET : "arrowDown",
     CARET_WITH_BACKGROUND : "caret",
@@ -29,6 +30,14 @@ const ids = {
     SEARCH_ICON : "searchIcon",
     CONTENT : "content",
     CONTENT_TABS : "contentTabs",
+    VIDEO_INFO_WRAPPER : "videoInfoWrapper",
+    USER_INFO_FOLLOW : "userInfoFollowBtn",
+    USERNAME_POST_WRAPPER : "userNamePostWrapper",
+    USERNAME_OF_POST : "userNameofPost",
+    COMMENTS : "comments",
+    ADD_COMMENT : "addComment",
+    LIKE_COMMENT_SHARE_INFO : "likeCommentShareInfo"
+
 }
 
 const classes = {
@@ -44,7 +53,9 @@ const classes = {
     HIDE_GRID : "gridHide",
     MATERIAL_ICON : "material-icons",
     NAVIGATION_ICON : "navigationIcons",
-    CONTENT_TAB : "contentTab"
+    CONTENT_TAB : "contentTab",
+    CONTENT_TAB_CLICKED : "contentTabClicked"
+
 }
 
 const icons = {

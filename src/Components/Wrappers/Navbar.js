@@ -6,9 +6,29 @@ import HomeIcon from 'Components/Common/HomeIcon';
 import MessagesIcon from 'Components/Common/MessagesIcon';
 import Searchbar from 'Components/Common/Searchbar';
 import React, { Component } from 'react';
-import { ids } from 'Registry';
+import { ids, otherConstants } from 'Registry';
 
 class Navbar extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            image : '',
+            name : ''
+        }
+    }
+    async componentDidMount(){
+        try{
+            let data = await fetch(otherConstants.DATA_FILE);
+            data = await data.json();
+            this.setState({
+                avatarUrl : data.profilePicture,
+                userName : data.name
+            });
+        }catch(err){
+            console.log(err);
+        }
+    }
+
     render() {
         return (
             <header className="container" id={ids.NAVBAR}>
@@ -20,7 +40,7 @@ class Navbar extends Component {
                         <MessagesIcon></MessagesIcon>
                         <ExploreIcon></ExploreIcon>
                         <ActivityIcon></ActivityIcon>
-                        <Avatar avatarUrl={this.props.avatarUrl} alt={this.props.userName}></Avatar>
+                        <Avatar avatarUrl={this.state.avatarUrl} alt={this.state.userName}></Avatar>
                     </div>
                 </nav>
             </header>

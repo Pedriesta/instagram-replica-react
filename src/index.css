@@ -285,6 +285,10 @@ input:focus{
 
 .contentTab:active{
     opacity: 0.3;
+}
+
+.contentTabClicked{
+    font-weight: bold;
     border-top: 0.1rem solid black;
 }
 

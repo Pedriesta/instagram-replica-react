@@ -8,11 +8,15 @@ class Avatar extends React.Component{
     }
 
     render(){
-
-        // if(this.props.size===size.MEDIUM)
+        if(this.props.size==="large"){
+            return(
+                <img id={ids.AVATAR_LARGE} src={this.props.avatarUrl} alt={this.props.alt} ></img>
+            );
+        }
         return(
             <img id={ids.AVATAR} src={this.props.avatarUrl} alt={this.props.alt}></img>
         );
+        
 
         // else logic for small and large size if needed in future
     }

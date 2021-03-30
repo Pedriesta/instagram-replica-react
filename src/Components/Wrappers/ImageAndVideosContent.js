@@ -18,16 +18,14 @@ class ImageAndVideosContent extends Component {
         }));
     }
     render() {
-        let gridToDisplay = {};
-        if(this.state.activeGrid===state.IMAGE_GRID)
-        gridToDisplay = <ImageGridWrapper></ImageGridWrapper>
-        else
-        gridToDisplay = <VideoGridWrapper></VideoGridWrapper>
+        const gridToDisplay = 
+        this.state.activeGrid===state.IMAGE_GRID ? <ImageGridWrapper></ImageGridWrapper> : <VideoGridWrapper></VideoGridWrapper>;
+
         return (
             <div id={ids.CONTENT}>
                 <div id={ids.CONTENT_TABS}>
-                <ImageTab imageGrid={this.state.activeGrid===state.IMAGE_GRID} toggleImageGrid={this.toggleGrid}></ImageTab>
-                <VideoTab videoGrid={this.state.activeGrid===state.VIDEO_GRID} toggleVideoGrid={this.toggleGrid}></VideoTab>
+                <ImageTab imageGridActive={this.state.activeGrid===state.IMAGE_GRID} toggleImageGrid={this.toggleGrid}></ImageTab>
+                <VideoTab videoGridActive={this.state.activeGrid===state.VIDEO_GRID} toggleVideoGrid={this.toggleGrid}></VideoTab>
                 </div>
                 {gridToDisplay}
             </div>

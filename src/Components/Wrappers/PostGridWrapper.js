@@ -11,10 +11,7 @@ class ImageGridWrapper extends Component {
     }
     async componentDidMount(){
         try{
-            let data = await fetch(otherConstants.DATA_FILE, {headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-               }});
+            let data = await fetch(otherConstants.DATA_FILE);
             data = await data.json();
             this.setState({
                 images : data.posts.images
@@ -25,7 +22,7 @@ class ImageGridWrapper extends Component {
     }
     render() {
         const imageGrid = this.state.images.map(image => {
-            return <ImagePost 
+            return <ImagePost key={image.id}
             id={image.id} 
             imageUrl={image.imageUrl} 
             caption={image.caption} 
@@ -52,10 +49,7 @@ class VideoGridWrapper extends Component{
     }
     async componentDidMount(){
         try{
-            let data = await fetch(otherConstants.DATA_FILE, {headers : { 
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-               }});
+            let data = await fetch(otherConstants.DATA_FILE);
             data = await data.json();
             this.setState({
                 videos : data.posts.videos
@@ -66,7 +60,7 @@ class VideoGridWrapper extends Component{
     }
     render(){
         const videoGrid = this.state.videos.map(video =>{
-            const post = <VideoPost
+            const post = <VideoPost key={video.id}
             id = {video.id}
             videoUrl = {video.videoUrl}
             caption = {video.caption}

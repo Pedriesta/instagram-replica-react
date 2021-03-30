@@ -1,6 +1,6 @@
 import CaretButton from 'Components/Common/CaretButton';
-import FollowButtonProfile from 'Components/Common/FollowButton';
-import SpreadButton from 'Components/Common/SpreadButton';
+import {FollowButtonProfile} from 'Components/Common/FollowButton';
+import {SpreadButton, SpreadButtonPost} from 'Components/Common/SpreadButton';
 import UserBio from 'Components/Common/UserBio';
 import React, { Component } from 'react';
 import { ids, otherConstants } from 'Registry';
@@ -38,7 +38,7 @@ class ProfileContent extends Component {
         }
     }
 
-    updateFollowStatus = ()=>{
+    updateFollowStatus = () => {
         this.setState((prevState) => ({
             isFollowed : !prevState.isFollowed,
             userInfo : {

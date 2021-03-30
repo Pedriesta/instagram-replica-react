@@ -1,0 +1,114 @@
+/* #mainBody{
+    /* width: 50%; */
+/* } */
+#contentWrapper{
+    padding : 5rem 0 0 0;
+    margin : 5rem 0 0 0;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#videoWrapper{
+    display: block;
+    background-color: black;
+}
+
+#videoInfoWrapper{
+    align-self: flex-start;
+    /* max-width : 50%; */
+}
+
+video #videoSource{
+    background-size: cover;   
+    overflow: hidden;
+    position: absolute;
+    top: 0; left: 0;
+    background: black;
+    /* max-width: 50%; */
+    /* height: auto; */
+}
+#userInfoFollowBtn{
+    display : flex;
+    gap : 1rem;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding : 0.5rem 0 0 0;
+}
+#comments{
+    display: flex;
+    flex-direction: column;
+    gap : 2rem;
+}
+
+#likeCommentShareInfo{
+    display: flex;
+    gap : 1rem;
+}
+
+#avatarPost{
+    height: 36px;
+    width : 36px;
+    border-radius: 50%;
+    padding-top : 0.1rem;
+    align-self: center;
+}
+
+#avatarLarge{
+    height: 48px;
+    width : 48px;
+    border-radius: 50%;
+    padding-top : 0.1rem;
+    align-self: baseline;
+    padding : 0.8rem 0.5rem 0.2rem 0.5rem;
+}
+
+#followButtonPostText{
+    color: black;
+    font-size: 28px !important; 
+
+}
+
+#spreadOfPost{
+    vertical-align: middle;
+    transition : 0.4s;
+    font-size: 48px;
+    height : 40px;
+    width: 40px;
+}
+
+#spreadOfPost:hover{
+    transform : scale(1.5);
+}
+
+#userNameOfPost{
+    color : black;
+    font-weight: bold;
+    font-size: 28px !important; 
+
+}
+
+#userNamePostWrapper{
+    align-self: center;
+    font-size: 24px !important; 
+
+}
+
+#followButtonPostText{
+    color : #0095f6;
+    font-size: 28px;
+}
+
+#followButtonPost{
+    margin : 0 0 0 1rem;
+}
+
+#spreadOfPost{
+    margin : 0 0 0 8rem;
+}
+
+#userInfoFollowBtn{
+    border: 0.1rem solid lightgray;
+    padding : 1rem;
+}

@@ -14,14 +14,14 @@ class ImagePost extends Component {
     toggleLike=()=>{
         this.setState((prevState) => ({
             isLiked : !prevState.isLiked,
-            numberOfLikes : !prevState.isLiked ? prevState.numberOfLikes-1 : prevState.numberOfLikes+1
+            numberOfLikes : !prevState.isLiked ? prevState.numberOfLikes+1 : prevState.numberOfLikes-1
         }));
     }
 
     render() {
         const likeCommentProps = {
             isLiked : this.state.isLiked,
-            numberOfLikes : this.props.numberOfLikes,
+            numberOfLikes : this.state.numberOfLikes,
             numberOfComments : this.props.numberOfComments,
             toggleLike : this.toggleLike
         }
