@@ -1,5 +1,6 @@
 import React from 'react';
 import { ids } from 'Registry';
+import PropTypes from 'prop-types';
 
 const UserBio = props => {
     return (
@@ -7,5 +8,13 @@ const UserBio = props => {
         </div>
     );
 };
+
+UserBio.propTypes = {
+    bio : PropTypes.string
+}
+
+UserBio.defaultProps = {
+    bio : "This is my bio"
+}
 
 export default UserBio;

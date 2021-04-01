@@ -6,7 +6,8 @@ class ImageGridWrapper extends Component {
     constructor(props){
         super(props);
         this.state = {
-            images : []
+            images : [],
+            loading : true
         }
     }
     async componentDidMount(){
@@ -14,13 +15,18 @@ class ImageGridWrapper extends Component {
             let data = await fetch(otherConstants.DATA_FILE);
             data = await data.json();
             this.setState({
-                images : data.posts.images
+                images : data.posts.images,
+                loading : false
             })
         }catch(err){
             console.log(err);
         }
     }
     render() {
+
+        if(this.state.loading)
+        return(<h1>Loading Data ...</h1>);
+
         const imageGrid = this.state.images.map(image => {
             return <ImagePost key={image.id}
             id={image.id} 

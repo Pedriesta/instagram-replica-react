@@ -1,6 +1,7 @@
 import LikeCommentIconWrapper from 'Components/Wrappers/LikeCommentIconWrapper';
 import React, { Component } from 'react';
 import { classes } from 'Registry';
+import PropTypes from 'prop-types';
 
 class ImagePost extends Component {
     constructor(props){
@@ -32,6 +33,24 @@ class ImagePost extends Component {
             </div>
         );
     }
+}
+
+ImagePost.propTypes = {
+    isLiked : PropTypes.bool,
+    numberOfLikes : PropTypes.number,
+    numberOfComments : PropTypes.number,
+    caption : PropTypes.string,
+    imageUrl : PropTypes.string,
+    id : PropTypes.number
+}
+
+ImagePost.defaultProps = {
+    isLiked : false,
+    numberOfLikes : 0,
+    numberOfComments : 0,
+    caption : "Image Post",
+    imageUrl : "",
+    id : -1
 }
 
 export default ImagePost;

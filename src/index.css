@@ -115,7 +115,6 @@ input:focus{
     height: 36px;
     width : 36px;
     border-radius: 50%;
-    padding-top : 0.1rem;
     align-self: baseline;
     padding : 0.2rem 0.5rem 0.2rem 0.5rem;
 }
@@ -153,7 +152,7 @@ input:focus{
 }
 
 .profileBorder{
-    border-bottom: 0.1rem solid black;
+    border-bottom: 0.1rem solid lightgray;
     width : 69%;
     margin : 0 auto;
 }
@@ -213,17 +212,19 @@ input:focus{
     background-color: black;
     border-radius: 0.4rem;
 
-    height : 4.2rem;
+    height : 4.3rem;
     width : 4rem;
-
     text-align: center;
-    vertical-align: middle;
+    vertical-align : baseline;
 
     transition : 0.4s;
 }
 
 #arrowDown{
     color:white;
+    height : 36px;
+    width: 36px;
+    padding-top: 1rem;
 }
 
 #caret:hover{
@@ -236,7 +237,8 @@ input:focus{
 #spread{
     vertical-align: middle;
     transition : 0.4s;
-    font-size: 36px;
+    height: 36px;
+    width: 36px;
 }
 
 #spread:hover{
@@ -288,7 +290,7 @@ input:focus{
 }
 
 .contentTabClicked{
-    font-weight: bold;
+    font-weight:;
     border-top: 0.1rem solid black;
 }
 

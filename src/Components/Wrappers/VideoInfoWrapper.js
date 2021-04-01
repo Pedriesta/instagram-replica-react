@@ -1,15 +1,17 @@
 import { Avatar } from 'Components/Common/Avatar';
-import {FollowButtonPost} from 'Components/Common/FollowButton';
 import {SpreadButtonPost} from 'Components/Common/SpreadButton';
 import React, { Component } from 'react';
 import {ids, otherConstants} from 'Registry';
+import Button from 'Components/Common/Button';
+
 
 class VideoInfoWrapper extends Component {
     constructor(props){
         super(props);
         this.state = {
             profilePicture : '',
-            userName : ''
+            userName : '',
+            loading : true
         }
     }
 
@@ -19,7 +21,8 @@ class VideoInfoWrapper extends Component {
             data = await data.json();
             this.setState({
                 profilePicture : data.profilePicture,
-                userName : data.name
+                userName : data.name,
+                loading : false
             });
         }catch(err){
             console.log(err);
@@ -27,6 +30,11 @@ class VideoInfoWrapper extends Component {
     }
 
     render() {
+        if(this.state.loading)
+        return(<h1>Loading Data ...</h1>);
+
+        // todo make it dynamic
+        const followButtonText = "follow";
         return (
             <div id={ids.VIDEO_INFO_WRAPPER}>
                 <div id={ids.USER_INFO_FOLLOW}>
@@ -34,7 +42,7 @@ class VideoInfoWrapper extends Component {
                     <div id={ids.USERNAME_POST_WRAPPER}>
                         <p id={ids.USERNAME_OF_POST}>{this.state.userName}</p>
                     </div>
-                    <FollowButtonPost></FollowButtonPost>
+                    <Button id="followButtonPost" children={followButtonText}></Button> 
                     <SpreadButtonPost></SpreadButtonPost>
                 </div>
                 <div id={ids.COMMENTS}></div>

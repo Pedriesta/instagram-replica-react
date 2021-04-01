@@ -1,7 +1,6 @@
 import React from "react";
 import ProfilePicture from 'Components/Common/ProfilePicture';
 import Navbar from 'Components/Wrappers/Navbar';
-import image from 'Assets/images/download.png'; 
 import { ids } from "Registry";
 import ProfileContent from "Components/Wrappers/ProfileContent";
 import ImageAndVideosContent from "Components/Wrappers/ImageAndVideosContent";

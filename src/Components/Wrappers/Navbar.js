@@ -1,19 +1,17 @@
-import ActivityIcon from 'Components/Common/ActivityIcon';
 import { Avatar } from 'Components/Common/Avatar';
 import Brand from 'Components/Common/Brand';
-import ExploreIcon from 'Components/Common/ExploreIcon';
-import HomeIcon from 'Components/Common/HomeIcon';
-import MessagesIcon from 'Components/Common/MessagesIcon';
+import Icon from 'Components/Common/Icon';
 import Searchbar from 'Components/Common/Searchbar';
 import React, { Component } from 'react';
-import { ids, otherConstants } from 'Registry';
+import { ids, classes, otherConstants, icons } from 'Registry';
 
 class Navbar extends Component {
     constructor(props){
         super(props);
         this.state = {
             image : '',
-            name : ''
+            name : '',
+            loading : true
         }
     }
     async componentDidMount(){
@@ -22,7 +20,8 @@ class Navbar extends Component {
             data = await data.json();
             this.setState({
                 avatarUrl : data.profilePicture,
-                userName : data.name
+                userName : data.name,
+                loading : false
             });
         }catch(err){
             console.log(err);
@@ -30,16 +29,25 @@ class Navbar extends Component {
     }
 
     render() {
+        if(this.state.loading)
+        return(<h1>Loading Data ...</h1>);
+
+        const navigationIconClassNames = [classes.NAVIGATION_ICON, classes.ICON];
         return (
             <header className="container" id={ids.NAVBAR}>
                 <nav>
                     <Brand brandName={"Instagram"}></Brand>
                     <Searchbar></Searchbar>
                     <div id={ids.NAVIGATION_BUTTONS}>
-                        <HomeIcon></HomeIcon>
-                        <MessagesIcon></MessagesIcon>
-                        <ExploreIcon></ExploreIcon>
-                        <ActivityIcon></ActivityIcon>
+                        {/* Home Icon */}
+                        <Icon classNames={navigationIconClassNames} src={icons.HOME} alt="Home Icon"></Icon>
+                        {/* Chat Icon */}
+                        <Icon classNames={navigationIconClassNames} src={icons.CHAT_BUBBLE} alt="Chat Icon"></Icon>
+                        {/* Explore Icon */}
+                        <Icon classNames={navigationIconClassNames} src={icons.EXPLORE} alt="Explore Icon"></Icon>
+                        {/* Activity Icon */}
+                        <Icon classNames={navigationIconClassNames} src={icons.HEART} alt="Activity Icon"></Icon>
+                        {/* Profile Settings */}
                         <Avatar avatarUrl={this.state.avatarUrl} alt={this.state.userName}></Avatar>
                     </div>
                 </nav>

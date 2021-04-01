@@ -1,25 +1,23 @@
-// import {classes, size} from 'Registry';
 import React from 'react';
-import {ids, size} from 'Registry';
-class Avatar extends React.Component{
-    constructor(props){
-        super(props);
-        this.state = {}
-    }
+import {icons, ids} from 'Registry';
+import PropTypes from 'prop-types';
 
-    render(){
-        if(this.props.size==="large"){
-            return(
-                <img id={ids.AVATAR_LARGE} src={this.props.avatarUrl} alt={this.props.alt} ></img>
-            );
-        }
-        return(
-            <img id={ids.AVATAR} src={this.props.avatarUrl} alt={this.props.alt}></img>
-        );
-        
-
-        // else logic for small and large size if needed in future
-    }
+const Avatar = (props) => {
+    const id = props.size==="large" ? ids.AVATAR_LARGE : ids.AVATAR;
+    return(
+        <img id={id} src={props.avatarUrl} alt={props.alt}></img>
+    );
 }
 
+Avatar.propTypes = {
+    size : PropTypes.string,
+    avatarUrl : PropTypes.string,
+    alt : PropTypes.string
+}
+
+Avatar.defaultProps = {
+    size : "medium",
+    avatarUrl : icons.USER,
+    alt : "Avatar"
+}
 export{Avatar};

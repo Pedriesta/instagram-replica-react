@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ids } from '../../Registry';
+import PropTypes from 'prop-types';
 
 class Brand extends Component {
     constructor(props){
@@ -14,5 +15,11 @@ class Brand extends Component {
         );
     }
 }
+Brand.propTypes = {
+    brandName : PropTypes.string
+}
 
+Brand.defaultProps = {
+    brandName : "Instagram"
+}
 export default Brand;

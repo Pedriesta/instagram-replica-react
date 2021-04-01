@@ -59,16 +59,10 @@ video #videoSource{
     height: 48px;
     width : 48px;
     border-radius: 50%;
-    padding-top : 0.1rem;
     align-self: baseline;
     padding : 0.8rem 0.5rem 0.2rem 0.5rem;
 }
 
-#followButtonPostText{
-    color: black;
-    font-size: 28px !important; 
-
-}
 
 #spreadOfPost{
     vertical-align: middle;
@@ -95,13 +89,10 @@ video #videoSource{
 
 }
 
-#followButtonPostText{
-    color : #0095f6;
-    font-size: 28px;
-}
-
 #followButtonPost{
     margin : 0 0 0 1rem;
+    color : #0095f6;
+    font-size: 28px;
 }
 
 #spreadOfPost{

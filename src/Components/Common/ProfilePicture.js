@@ -6,7 +6,8 @@ class ProfilePicture extends Component {
         super(props);
         this.state = {
             image : '',
-            name : ''
+            name : '',
+            loading : true
         }
     }
     async componentDidMount(){
@@ -15,13 +16,16 @@ class ProfilePicture extends Component {
             data = await data.json();
             this.setState({
                 profilePicture : data.profilePicture,
-                userName : data.name
+                userName : data.name,
+                loading : false
             });
         }catch(err){
             console.log(err);
         }
     }
     render() {
+        if(this.state.loading)
+        return(<h1>Loading Data ...</h1>);
         return (
             <div id = {ids.PROFILE_PICTURE_WRAPPER}>
                 <img id={ids.PROFILE_PICTURE} src={this.state.profilePicture} alt={this.state.userName}></img>

@@ -1,9 +1,10 @@
-import CaretButton from 'Components/Common/CaretButton';
-import {FollowButtonProfile} from 'Components/Common/FollowButton';
-import {SpreadButton, SpreadButtonPost} from 'Components/Common/SpreadButton';
 import UserBio from 'Components/Common/UserBio';
 import React, { Component } from 'react';
 import { ids, otherConstants } from 'Registry';
+import Button from 'Components/Common/Button';
+import caretIcon from 'Assets/icons/keyboard_arrow_down-white-18dp.svg'
+import spreadIcon from 'Assets/icons/more_horiz-24px.svg';
+import Icon from 'Components/Common/Icon';
 
 class ProfileContent extends Component {
     constructor(props){
@@ -14,8 +15,9 @@ class ProfileContent extends Component {
                 numberOfPosts : "",
                 followers : "",
                 following : "",
+                loading : true
             },
-            isFollowed : ""
+            isFollowed : false
         }
     }
 
@@ -29,7 +31,8 @@ class ProfileContent extends Component {
                     numberOfPosts : data.numberOfPosts,
                     followers : data.followers,
                     following : data.following,
-                    bio : otherConstants.BIO               
+                    bio : otherConstants.BIO,
+                    loading : false               
                 },
                 isFollowed : data.isFollowed,
             });
@@ -48,26 +51,34 @@ class ProfileContent extends Component {
         }));
     }
     render() {
-        const userInfo = this.state.userInfo;
+        if(this.state.loading)
+        return(<h1>Loading Data ...</h1>);
 
-        const titleButtons = 
-        <div id={ids.TITLE_BUTTONS}>
-            <span ids={ids.USER_NAME}>{userInfo.userName}</span>
-            <FollowButtonProfile updateFollowStatus={this.updateFollowStatus} isFollowed={this.state.isFollowed}></FollowButtonProfile>
-            <CaretButton></CaretButton>
-            <SpreadButton></SpreadButton>
-        </div>
-
-
-        const postsFollowerInfo = 
-        <div id={ids.POSTS_FOLLOWER_INFO}>
-            <b id="numberOfPosts">{userInfo.numberOfPosts} </b> posts<span className="space"></span>
-            <b id="followers">{userInfo.followers} </b> followers<span className="space"></span><b id="following">{userInfo.following}</b> following
-        </div>
+        const {userInfo, isFollowed} = this.state;
+        const followBtnText = isFollowed ? "unfollow" : "follow";
         return (
             <div id = {ids.PROFILE_CONTENT}>
-                {titleButtons}
-                {postsFollowerInfo}
+                 <div id={ids.TITLE_BUTTONS}>
+                     {/* User Name */}
+                    <span ids={ids.USER_NAME}>{userInfo.userName}</span>
+
+                    {/* Follow Button */}
+                    <Button id={ids.FOLLOW_BUTTON} onClick={this.updateFollowStatus} children={followBtnText}></Button>
+                    
+                    {/* Caret Button */}
+                    <Button id={ids.CARET_WITH_BACKGROUND} children={
+                        <img id={ids.CARET} src={caretIcon} alt="Caret"></img>    
+                    }></Button>
+
+                    {/* Spread Button */}
+                    <Icon id={ids.SPREAD} src={spreadIcon} alt="Spread Button"></Icon>
+                </div>
+
+                <div id={ids.POSTS_FOLLOWER_INFO}>
+                    <b id={ids.NUMBER_OF_POSTS}>{userInfo.numberOfPosts} </b> posts<span className="space"></span>
+                    <b id={ids.FOLLOWERS_COUNT}>{userInfo.followers} </b> followers<span className="space"></span><b id={ids.FOLLOWING_COUNT}>{userInfo.following}</b> following
+                </div>
+
                 <UserBio bio={userInfo.bio}></UserBio>
             </div>
         );

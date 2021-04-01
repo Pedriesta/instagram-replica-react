@@ -59,19 +59,19 @@ const classes = {
 }
 
 const icons = {
-    HEART : "./icons/favorite_border-24px.svg",
-    CHAT_BUBBLE : "./icons/chat_bubble-24px.svg",
-    COMMENT : "./icons/chat_bubble-24px.svg",
-    HEART_FILLED : "./icons/favorite-24px.svg",
-    TV_ON : "./icons/tv-24px.svg",
-    TV_OFF : "./icons/tv_off-24px.svg",
-    GRID_ON : "./icons/grid_on-24px.svg",
-    GRID_OFF : "./icons/grid_off-24px.svg",
-    HOME : "./icons/home-24px.svg",
-    USER : "./icons/perm_identity-24px.svg",
-    EXPLORE : "./icons/explore-24px.svg",
-    CARET : "./icons/keyboard_arrow_down-white-18dp.svg",
-    SPREAD : "./icons/more_horiz-24px.svg"
+    HEART : "Assets/icons/favorite_border-24px.svg",
+    CHAT_BUBBLE : "Assets/icons/chat_bubble-24px.svg",
+    COMMENT : "Assets/icons/chat_bubble-24px.svg",
+    HEART_FILLED : "Assets/icons/favorite-24px.svg",
+    TV_ON : "Assets/icons/tv-24px.svg",
+    TV_OFF : "Assets/icons/tv_off-24px.svg",
+    GRID_ON : "Assets/icons/grid_on-24px.svg",
+    GRID_OFF : "Assets/icons/grid_off-24px.svg",
+    HOME : "Assets/icons/home-24px.svg",
+    USER : "Assets/icons/perm_identity-24px.svg",
+    EXPLORE : "Assets/icons/explore-24px.svg",
+    CARET : "Assets/icons/keyboard_arrow_down-white-18dp.svg",
+    SPREAD : "Assets/icons/more_horiz-24px.svg"
 }
 
 const state = {
