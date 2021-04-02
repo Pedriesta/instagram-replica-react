@@ -9,7 +9,6 @@ import Icon from 'Components/Common/Icon';
 function LikeCommentIconWrapper(props){
     const likeIconClasses = [classes.ICON, classes.LIKE_ICON];
     const likeIcon = props.isLiked ? likedTrueIcon : likedFalseIcon;
-    
     const commentIconClasses = [classes.ICON, classes.COMMENT_ICON];
     return (
         <div className={classes.LIKES_AND_COMMENTS}>

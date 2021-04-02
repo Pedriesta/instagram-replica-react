@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import {ids, otherConstants} from 'Registry';
+import {connect} from 'react-redux';
+import {addProfilePicture} from 'Redux/actions';
 
 class ProfilePicture extends Component {
     constructor(props){
         super(props);
         this.state = {
-            image : '',
-            name : '',
             loading : true
         }
     }
@@ -14,9 +14,8 @@ class ProfilePicture extends Component {
         try{
             let data = await fetch(otherConstants.DATA_FILE);
             data = await data.json();
+            this.props.addProfilePicture(data.profilePicture, data.name);
             this.setState({
-                profilePicture : data.profilePicture,
-                userName : data.name,
                 loading : false
             });
         }catch(err){
@@ -28,11 +27,16 @@ class ProfilePicture extends Component {
         return(<h1>Loading Data ...</h1>);
         return (
             <div id = {ids.PROFILE_PICTURE_WRAPPER}>
-                <img id={ids.PROFILE_PICTURE} src={this.state.profilePicture} alt={this.state.userName}></img>
+                <img id={ids.PROFILE_PICTURE} src={this.props.profilePictureUrl} alt={this.props.altUserName}></img>
             </div>
         );
     }
 }
 
-export default ProfilePicture;
+const mapStateToProps = (state) => {
+    const profilePicture = state.profilePicture;
+    return {...profilePicture};
+}
+
+export default connect(mapStateToProps, {addProfilePicture})(ProfilePicture);
 

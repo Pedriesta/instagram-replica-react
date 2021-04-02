@@ -4,13 +4,13 @@ import Icon from 'Components/Common/Icon';
 import Searchbar from 'Components/Common/Searchbar';
 import React, { Component } from 'react';
 import { ids, classes, otherConstants, icons } from 'Registry';
+import {connect} from 'react-redux';
+import {addProfilePicture} from 'Redux/actions';
 
 class Navbar extends Component {
     constructor(props){
         super(props);
         this.state = {
-            image : '',
-            name : '',
             loading : true
         }
     }
@@ -18,9 +18,8 @@ class Navbar extends Component {
         try{
             let data = await fetch(otherConstants.DATA_FILE);
             data = await data.json();
+            this.props.addProfilePicture(data.profilePicture, data.name);
             this.setState({
-                avatarUrl : data.profilePicture,
-                userName : data.name,
                 loading : false
             });
         }catch(err){
@@ -41,14 +40,18 @@ class Navbar extends Component {
                     <div id={ids.NAVIGATION_BUTTONS}>
                         {/* Home Icon */}
                         <Icon classNames={navigationIconClassNames} src={icons.HOME} alt="Home Icon"></Icon>
+
                         {/* Chat Icon */}
                         <Icon classNames={navigationIconClassNames} src={icons.CHAT_BUBBLE} alt="Chat Icon"></Icon>
+
                         {/* Explore Icon */}
                         <Icon classNames={navigationIconClassNames} src={icons.EXPLORE} alt="Explore Icon"></Icon>
+
                         {/* Activity Icon */}
                         <Icon classNames={navigationIconClassNames} src={icons.HEART} alt="Activity Icon"></Icon>
+                        
                         {/* Profile Settings */}
-                        <Avatar avatarUrl={this.state.avatarUrl} alt={this.state.userName}></Avatar>
+                        <Avatar avatarUrl={this.props.profilePictureUrl} alt={this.props.altUserName}></Avatar>
                     </div>
                 </nav>
             </header>
@@ -56,4 +59,9 @@ class Navbar extends Component {
     }
 }
 
-export default Navbar;
+const mapStateToProps = (state) => {
+    const profilePicture = state.profilePicture;
+    return {...profilePicture};
+}
+
+export default connect(mapStateToProps, {addProfilePicture})(Navbar);

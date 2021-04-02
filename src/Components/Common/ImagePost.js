@@ -2,28 +2,20 @@ import LikeCommentIconWrapper from 'Components/Wrappers/LikeCommentIconWrapper';
 import React, { Component } from 'react';
 import { classes } from 'Registry';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {toggleLike} from 'Redux/actions';
+import { getPostById } from 'Redux/selectors';
 
 class ImagePost extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            isLiked : this.props.isLiked,
-            numberOfLikes : this.props.numberOfLikes
-        }
-    }
-
     toggleLike=()=>{
-        this.setState((prevState) => ({
-            isLiked : !prevState.isLiked,
-            numberOfLikes : !prevState.isLiked ? prevState.numberOfLikes+1 : prevState.numberOfLikes-1
-        }));
+        this.props.toggleLike(this.props.id);
     }
 
     render() {
         const likeCommentProps = {
-            isLiked : this.state.isLiked,
-            numberOfLikes : this.state.numberOfLikes,
-            numberOfComments : this.props.numberOfComments,
+            isLiked : this.props.liked,
+            numberOfLikes : this.props.likes,
+            numberOfComments : this.props.comments,
             toggleLike : this.toggleLike
         }
         return (
@@ -53,4 +45,9 @@ ImagePost.defaultProps = {
     id : -1
 }
 
-export default ImagePost;
+const mapStateToProps = (state, ownProps) => {
+    const image = getPostById(state, ownProps.id);
+    return {...image};
+}
+
+export default connect(mapStateToProps, {toggleLike})(ImagePost);

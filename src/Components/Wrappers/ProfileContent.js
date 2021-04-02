@@ -5,19 +5,14 @@ import Button from 'Components/Common/Button';
 import caretIcon from 'Assets/icons/keyboard_arrow_down-white-18dp.svg'
 import spreadIcon from 'Assets/icons/more_horiz-24px.svg';
 import Icon from 'Components/Common/Icon';
-
+import { connect } from "react-redux";
+import {addUserInfo} from 'Redux/actions';
+import {toggleFollow} from 'Redux/actions';
 class ProfileContent extends Component {
     constructor(props){
         super(props);
         this.state = {
-            userInfo : {
-                userName : "",
-                numberOfPosts : "",
-                followers : "",
-                following : "",
-                loading : true
-            },
-            isFollowed : false
+            loading : true
         }
     }
 
@@ -25,36 +20,34 @@ class ProfileContent extends Component {
         try{
             let data = await fetch(otherConstants.DATA_FILE);
             data = await data.json();
+
+            // Dispatch Action to Redux Store
+            this.props.addUserInfo({
+                userName : data.name,
+                numberOfPosts : data.numberOfPosts,
+                followers : data.followers,
+                following : data.following,
+                bio : otherConstants.BIO,
+                isFollowed : data.isFollowed
+            });
             this.setState({
-                userInfo : {
-                    userName : data.name,
-                    numberOfPosts : data.numberOfPosts,
-                    followers : data.followers,
-                    following : data.following,
-                    bio : otherConstants.BIO,
-                    loading : false               
-                },
-                isFollowed : data.isFollowed,
+                loading : false               
             });
         }catch(err){
             console.log(err);
         }
     }
 
+    // Dispatch Action to Redux Store
     updateFollowStatus = () => {
-        this.setState((prevState) => ({
-            isFollowed : !prevState.isFollowed,
-            userInfo : {
-                ...prevState.userInfo,
-                followers : prevState.isFollowed ? prevState.userInfo.followers-1 : prevState.userInfo.followers+1
-            }
-        }));
+        this.props.toggleFollow();
     }
+
     render() {
         if(this.state.loading)
         return(<h1>Loading Data ...</h1>);
 
-        const {userInfo, isFollowed} = this.state;
+        const {userInfo, isFollowed} = this.props;
         const followBtnText = isFollowed ? "unfollow" : "follow";
         return (
             <div id = {ids.PROFILE_CONTENT}>
@@ -85,4 +78,10 @@ class ProfileContent extends Component {
     }
 }
 
-export default ProfileContent;
+const mapStateToProps = (state) => {
+    const userInfo  = state.userInfo;
+    return {userInfo};
+}
+
+// Connect to Redux Store
+export default connect(mapStateToProps, {addUserInfo, toggleFollow} )(ProfileContent);

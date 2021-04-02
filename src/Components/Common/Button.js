@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const Button = (props) => {
@@ -10,7 +10,7 @@ const Button = (props) => {
 }
 
 Button.propTypes = {
-    id : PropTypes.number,
+    id : PropTypes.string,
     classNames : PropTypes.arrayOf(PropTypes.string),
     onClick : PropTypes.func,
     children : PropTypes.node

@@ -20,7 +20,8 @@ ContentTab.propTypes = {
 }
 
 ContentTab.defaultProps = {
-
+    classNames : [],
+    id : ""
 }
 
 export default ContentTab;

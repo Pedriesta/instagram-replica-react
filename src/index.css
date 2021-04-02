@@ -23,7 +23,8 @@ body{
     font-weight: bold;
     font-family: "Party LET", "Curlz MT", fantasy;
     color :black;
-    
+    align-self: flex-end;
+    vertical-align: bottom;
 }
 #navbar{
     position : fixed;
@@ -97,10 +98,11 @@ input:focus{
 }
 
 #navigationButtons{
-    display: inline-flex;
+    display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
-
+    align-items: center;
+    margin-bottom: 0.6rem;
 }
 
 .icon{
@@ -115,8 +117,9 @@ input:focus{
     height: 36px;
     width : 36px;
     border-radius: 50%;
-    align-self: baseline;
     padding : 0.2rem 0.5rem 0.2rem 0.5rem;
+    margin-bottom: 0.2rem;
+    align-self : flex-start
 }
 
 .icon:hover{
@@ -290,8 +293,9 @@ input:focus{
 }
 
 .contentTabClicked{
-    font-weight:;
-    border-top: 0.1rem solid black;
+    font-weight:200;
+    z-index : 10;
+    box-shadow: 0 -2px 0 #000;
 }
 
 #imageGridIcon{

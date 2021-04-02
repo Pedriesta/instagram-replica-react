@@ -36,7 +36,8 @@ const ids = {
     USERNAME_OF_POST : "userNameofPost",
     COMMENTS : "comments",
     ADD_COMMENT : "addComment",
-    LIKE_COMMENT_SHARE_INFO : "likeCommentShareInfo"
+    LIKE_COMMENT_SHARE_INFO : "likeCommentShareInfo",
+    SPREAD_OF_POST : "spreadofPost"
 
 }
 
