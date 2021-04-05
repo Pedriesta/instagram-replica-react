@@ -1,23 +1,22 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { ADD_PROFILE_PICTURE } from 'Redux/actionTypes';
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     profilePictureUrl : "",
     altUserName : ""
 };
 
-export default function(state = initialState, action){
-    switch(action.type){
-
-        case ADD_PROFILE_PICTURE : {
-            return{
-                ...state,
-                profilePictureUrl : action.payload.imageUrl,
-                altUserName : action.payload.altUserName
-            }
-        }
-        default : {
-            return state;
-        }
+const profilePictureSlice = createSlice({
+  name: 'profilePicture',
+  initialState,
+  reducers: {
+    addProfilePicture(state, action){
+        state.profilePictureUrl = action.payload.imageUrl;
+        state.altUserName = action.payload.altUserName;
     }
-}
+  },
+})
+
+export const { addProfilePicture } = profilePictureSlice.actions
+
+export default profilePictureSlice.reducer

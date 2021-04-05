@@ -1,53 +1,42 @@
 import LikeCommentIconWrapper from 'Components/Wrappers/LikeCommentIconWrapper';
-import React, { Component } from 'react';
+import React from 'react';
 import { classes } from 'Registry';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import {toggleLike} from 'Redux/actions';
-import { getPostById } from 'Redux/selectors';
 
-class ImagePost extends Component {
-    toggleLike=()=>{
-        this.props.toggleLike(this.props.id);
+import { useDispatch } from 'react-redux'
+import {toggleLike as toggleLikeAction} from 'Redux/reducers/posts';
+import { useSelector } from 'react-redux'
+
+const ImagePost = (props) => {
+    const dispatch = useDispatch();
+    const image = useSelector(state => state.posts.images.find((image)=>image.id===props.id));
+
+    function toggleLike(){
+        dispatch(toggleLikeAction(image.id));
     }
 
-    render() {
-        const likeCommentProps = {
-            isLiked : this.props.liked,
-            numberOfLikes : this.props.likes,
-            numberOfComments : this.props.comments,
-            toggleLike : this.toggleLike
-        }
-        return (
-            <div data-id={this.props.id} className={classes.POST_WRAPPER}>
-                <LikeCommentIconWrapper {...likeCommentProps}></LikeCommentIconWrapper>
-                <img src={this.props.imageUrl} alt={this.props.caption} className={classes.GALLERY_POST}></img>
-            </div>
-        );
+    const likeCommentProps = {
+        isLiked : image.liked,
+        numberOfLikes : image.likes,
+        numberOfComments : image.comments,
+        toggleLike : toggleLike
     }
+    
+    return (
+        <div data-id={props.id} className={classes.POST_WRAPPER}>
+            <LikeCommentIconWrapper {...likeCommentProps}></LikeCommentIconWrapper>
+            <img src={image.imageUrl} alt={image.caption} className={classes.GALLERY_POST}></img>
+        </div>
+    );
 }
 
 ImagePost.propTypes = {
-    isLiked : PropTypes.bool,
-    numberOfLikes : PropTypes.number,
-    numberOfComments : PropTypes.number,
-    caption : PropTypes.string,
-    imageUrl : PropTypes.string,
     id : PropTypes.number
 }
 
 ImagePost.defaultProps = {
-    isLiked : false,
-    numberOfLikes : 0,
-    numberOfComments : 0,
-    caption : "Image Post",
-    imageUrl : "",
     id : -1
 }
 
-const mapStateToProps = (state, ownProps) => {
-    const image = getPostById(state, ownProps.id);
-    return {...image};
-}
 
-export default connect(mapStateToProps, {toggleLike})(ImagePost);
+export default ImagePost;

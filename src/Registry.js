@@ -37,8 +37,8 @@ const ids = {
     COMMENTS : "comments",
     ADD_COMMENT : "addComment",
     LIKE_COMMENT_SHARE_INFO : "likeCommentShareInfo",
-    SPREAD_OF_POST : "spreadofPost"
-
+    SPREAD_OF_POST : "spreadofPost",
+    WITH_ICON : "withIcon"
 }
 
 const classes = {

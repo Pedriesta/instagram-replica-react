@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import {ADD_USER_INFO, TOGGLE_FOLLOW} from 'Redux/actionTypes';
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
     userName : "",
@@ -10,30 +10,28 @@ const initialState = {
     bio : ""
 };
 
-export default function(state = initialState, action){
-    switch(action.type){
-        case ADD_USER_INFO : {
-            const {userName, numberOfPosts, followers, following, isFollowed, bio} = action.payload;
-            return{
-                userName : userName,
-                numberOfPosts : numberOfPosts,
-                followers : followers,
-                following : following,
-                isFollowed : isFollowed,
-                bio : bio
-            };
-        }
+const userInfoSlice = createSlice({
+  name: 'userInfo',
+  initialState,
+  reducers: {
+    addUserInfo(state, action){
+        const {userName, numberOfPosts, followers, following, isFollowed, bio} = action.payload;
 
-        case TOGGLE_FOLLOW : {
-            return{
-                ...state,
-                isFollowed : !state.isFollowed,
-                followers : state.isFollowed ? state.followers - 1 : state.followers + 1
-            };
-        }
-
-        default : {
-            return state;
-        }
+        state.userName = userName;
+        state.numberOfPosts = numberOfPosts;
+        state.followers = followers;
+        state.following = following;
+        state.isFollowed = isFollowed;
+        state.bio = bio;
+      },
+      
+    toggleFollow(state, action){
+        state.followers = state.isFollowed ? state.followers - 1 : state.followers + 1;
+        state.isFollowed = !state.isFollowed;
     }
-}
+  },
+})
+
+export const { addUserInfo, toggleFollow } = userInfoSlice.actions
+
+export default userInfoSlice.reducer

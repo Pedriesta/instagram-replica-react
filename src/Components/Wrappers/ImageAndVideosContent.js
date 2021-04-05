@@ -2,6 +2,7 @@ import ContentTab from 'Components/Common/ContentTab';
 import React, { Component } from 'react';
 import { classes, ids, state } from 'Registry';
 import { ImageGridWrapper, VideoGridWrapper } from './PostGridWrapper';
+
 import gridOn from 'Assets/icons/grid_on-24px.svg';
 import gridOff from 'Assets/icons/grid_off-24px.svg';
 import tvOff from 'Assets/icons/tv_off-24px.svg';

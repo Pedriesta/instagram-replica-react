@@ -1,60 +1,45 @@
 /* eslint-disable import/no-anonymous-default-export */
-import {ADD_IMAGES, ADD_VIDEOS, TOGGLE_LIKE} from 'Redux/actionTypes';
-import { getPostById } from 'Redux/selectors';
+import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-        images : [],
-        videos : []
+    images : [],
+    videos : []
 };
 
-export default function(state = initialState, action){
-    switch(action.type){
 
-        case ADD_IMAGES : {
-            const images = action.payload;
-            return{
-                ...state,
-                images : images
-            };
+const postsSlice = createSlice({
+  name: 'posts',
+  initialState,
+  reducers: {
+    addImages(state, action){
+        state.images = action.payload;
+    },
+
+    addVideos(state, action){
+        state.videos = action.payload;
+    },
+
+    toggleLike(state, action){
+        const id = action.payload;
+        const image = state.images.find((image)=>{
+            return image.id===id;
+        });
+        const video = state.videos.find((video)=>{
+            return video.id===id;
+        });
+        if(image){
+            image.liked = !image.liked;
+            image.likes = image.liked ? image.likes+1 : image.likes - 1;
         }
-
-        case ADD_VIDEOS : {
-            const videos = action.payload;
-            return{
-                ...state,
-                videos : videos
-            };
+        if(video){
+            video.liked = !video.liked;
+            video.likes = video.liked ? video.likes+1 : video.likes - 1;
         }
-
-        case TOGGLE_LIKE : {
-            const postId = action.payload;
-            const image = state.images.find((image) => {
-                return image.id===postId;
-            });
-
-            if(image){
-                image.liked = !image.liked;
-                image.likes = image.liked ? image.likes+1 : image.likes - 1
-                return{
-                    ...state,
-                    images : state.images
-                };
-            }
-            else{
-                const video = state.videos.find((video)=>{
-                    return video.id===postId;
-                });
-                video.liked = !video.liked;
-                video.likes = video.liked ? video.likes+1 : video.likes - 1;
-                return{
-                    ...state,
-                    videos : state.videos
-                };
-            }
-        }
-
-        default : {
-            return state;
-        }
+        
     }
-}
+  },
+})
+
+export const { addImages, addVideos, toggleLike } = postsSlice.actions
+
+export default postsSlice.reducer

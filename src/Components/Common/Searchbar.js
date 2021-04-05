@@ -5,7 +5,7 @@ class Searchbar extends Component {
     render() {
         return (
             <div id={ids.SEARCHBAR}>
-                <div id="withIcon">
+                <div id={ids.WITH_ICON}>
                     <img src={search} alt="Search" id={ids.SEARCH_ICON}></img><input type="text" placeholder="Search..."></input>
                 </div>
             </div>
