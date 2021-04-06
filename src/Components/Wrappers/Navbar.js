@@ -2,38 +2,30 @@ import { Avatar } from 'Components/Common/Avatar';
 import Brand from 'Components/Common/Brand';
 import Icon from 'Components/Common/Icon';
 import Searchbar from 'Components/Common/Searchbar';
-import React, { useEffect, useState } from 'react';
-import { ids, classes, otherConstants, icons } from 'Registry';
+import React, { useEffect} from 'react';
+import { ids, classes, icons } from 'Registry';
 
 import { useDispatch } from 'react-redux'
-import {addProfilePicture} from 'Redux/reducers/profilePicture';
+import {fetchProfilePicture} from 'Redux/reducers/profilePicture';
 import { useSelector } from 'react-redux'
 
 const Navbar = (props) => {
     
-    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
-    const profilePicture = useSelector(state => state.profilePicture);
+    const profilePictureUrl = useSelector(state => state.profilePicture.profilePictureUrl);
+    const altProfilePicture = useSelector(state => state.profilePicture.altUserName);
+
+    const loadingStatus = useSelector(state => state.profilePicture.loadingStatus);
 
     useEffect(() => {
-        async function fetchData(){
-            try{
-                let data = await fetch(otherConstants.DATA_FILE);
-                data = await data.json();
-                dispatch(addProfilePicture({
-                    imageUrl : data.profilePicture,
-                    altUserName : data.name
-                }));
-                setLoading(false);
-            }catch(err){
-                console.log(err);
-            }
-        }
-        fetchData();
+        dispatch(fetchProfilePicture());
     }, []);
 
-    if(loading)
+    if(loadingStatus==='loading')
     return(<h1>Loading Data ...</h1>);
+
+    if(loadingStatus==='failed')
+    return(<h1>Error Loading Data ...</h1>);
 
     const navigationIconClassNames = [classes.NAVIGATION_ICON, classes.ICON];
     return (
@@ -55,7 +47,7 @@ const Navbar = (props) => {
                     <Icon classNames={navigationIconClassNames} src={icons.HEART} alt="Activity Icon"></Icon>
                     
                     {/* Profile Settings */}
-                    <Avatar avatarUrl={profilePicture.profilePictureUrl} alt={profilePicture.altUserName}></Avatar>
+                    <Avatar avatarUrl={profilePictureUrl} alt={altProfilePicture}></Avatar>
                 </div>
             </nav>
         </header>

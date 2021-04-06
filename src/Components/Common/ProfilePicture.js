@@ -1,37 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import {ids, otherConstants} from 'Registry';
+import React, { useEffect } from 'react';
+import {ids} from 'Registry';
 
 import { useDispatch } from 'react-redux'
-import {addProfilePicture} from 'Redux/reducers/profilePicture';
+import {fetchProfilePicture} from 'Redux/reducers/profilePicture';
 import { useSelector } from 'react-redux'
 const ProfilePicture = () => {
-    const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
-    const profilePicture = useSelector(state => state.profilePicture);
+    const profilePictureUrl = useSelector(state => state.profilePicture.profilePictureUrl);
+    const altProfilePicture = useSelector(state => state.profilePicture.altUserName);
+
+    const loadingStatus = useSelector(state => state.profilePicture.loadingStatus);
+
 
     useEffect(() => {
-        async function fetchData(){
-            try{
-                let data = await fetch(otherConstants.DATA_FILE);
-                data = await data.json();
-                dispatch(addProfilePicture({
-                    imageUrl : data.profilePicture,
-                    altUserName : data.name
-                }));
-                setLoading(false);
-            }catch(err){
-                console.log(err);
-            }
-        }
-        fetchData();
+        dispatch(fetchProfilePicture());
     }, []);
 
-    if(loading)
+    if(loadingStatus==='pending')
     return(<h1>Loading Data ...</h1>);
+
+    if(loadingStatus==='rejected')
+    return(<h1>Error Loading Data ...</h1>);
 
     return (
         <div id = {ids.PROFILE_PICTURE_WRAPPER}>
-            <img id={ids.PROFILE_PICTURE} src={profilePicture.profilePictureUrl} alt={profilePicture.altUserName}></img>
+            <img id={ids.PROFILE_PICTURE} src={profilePictureUrl} alt={altProfilePicture}></img>
         </div>
     );
 }

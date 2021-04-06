@@ -1,6 +1,6 @@
 import UserBio from 'Components/Common/UserBio';
-import React, { useEffect, useState} from 'react';
-import { ids, otherConstants } from 'Registry';
+import React, { useEffect} from 'react';
+import { ids} from 'Registry';
 import Button from 'Components/Common/Button';
 
 import caretIcon from 'Assets/icons/keyboard_arrow_down-white-18dp.svg'
@@ -8,12 +8,12 @@ import spreadIcon from 'Assets/icons/more_horiz-24px.svg';
 import Icon from 'Components/Common/Icon';
 
 import { useDispatch } from 'react-redux'
-import {addUserInfo, toggleFollow as toggleFollowAction} from 'Redux/reducers/userInfo';
+import {fetchUserInfo, toggleFollow as toggleFollowAction} from 'Redux/reducers/userInfo';
 import { useSelector } from 'react-redux'
 
 const ProfileContent = () => {
     const dispatch = useDispatch();
-    const [loading, setLoading] = useState(true);
+    const loadingStatus = useSelector(state => state.userInfo.loadingStatus);
 
     function toggleFollow(){
         dispatch(toggleFollowAction());
@@ -22,31 +22,15 @@ const ProfileContent = () => {
     const userInfo = useSelector(state => state.userInfo);
 
     useEffect(()=>{
-        async function fetchData(){
-            try{
-                let data = await fetch(otherConstants.DATA_FILE);
-                data = await data.json();
-    
-                // Dispatch Action to Redux Store
-                dispatch(addUserInfo({
-                    userName : data.name,
-                    numberOfPosts : data.numberOfPosts,
-                    followers : data.followers,
-                    following : data.following,
-                    bio : otherConstants.BIO,
-                    isFollowed : data.isFollowed
-                }));
-                setLoading(false);
-            }catch(err){
-                console.log(err);
-            }
-        }
-        fetchData();
+        dispatch(fetchUserInfo());
     }, []);
 
     // Render if data has not been fetched else display loader
-    if(loading)
+    if(loadingStatus==='loading')
     return(<h1>Loading Data ...</h1>);
+
+    if(loadingStatus==='failed')
+    return(<h1>Error Loading Data ...</h1>);
 
     const followBtnText = userInfo.isFollowed ? "unfollow" : "follow";
     return (
